@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-body: "Inter"; /* Fallback to system sans-serif */
+    --font-primary-heading: "Orbitron"; /* For main hero title */
+    --font-secondary-heading: "Plus Jakarta Sans"; /* For all other headings */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.4% 17.3%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.4% 17.3%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.4% 17.3%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.4% 17.3%;
+    --input: 217.2 32.4% 17.3%;
+    --ring: 217.2 91.2% 59.8%;
+
+    --radius: 0.5rem;
+
+    --node-glow-color: #00f0ff; /* Default glow color */
+
+    /* Custom colors for charts */
+    --neon-blue: 183 100% 47%; /* #00F0FF */
+    --neon-blue-light: 183 100% 47% / 0.3; /* rgba(0, 240, 255, 0.3) */
+    --neon-purple: 271 76% 53%; /* #8A2BE2 */
+    --neon-purple-light: 271 76% 53% / 0.3; /* rgba(138, 43, 226, 0.3) */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%; /* Dark background */
+    --foreground: 210 40% 98%; /* Light text */
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 220 85% 54%; /* Default primary, can be overridden by neon */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    --node-glow-color: #00f0ff; /* Default glow color */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    font-family: var(--font-body); /* Apply body font */
+    @apply bg-background text-foreground;
+  }
+  /* Apply secondary heading font to all heading tags by default */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-secondary-heading);
+  }
+}
+
+@layer components {
+  .glassmorphism-card {
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly visible background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* More pronounced shadow */
+    border-radius: var(--radius); /* Use defined radius */
+  }
+}
+
+/* Light mode grid background */
+.grid-background {
+  background-image: linear-gradient(to right, rgba(36, 101, 237, 0.2) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgba(36, 101, 237, 0.2) 0.5px, transparent 0.5px) !important;
+  background-size: 80px 80px !important;
+}
+
+.grid-gradient {
+  background: radial-gradient(70% 70% at 50% 50%, transparent 0%, rgba(36, 101, 237, 0.05) 100%) !important;
+}
+
+/* Dark mode adjustments for the grid background */
+.dark .grid-background {
+  background-image: linear-gradient(to right, rgba(36, 101, 237, 0.2) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgba(36, 101, 237, 0.2) 0.5px, transparent 0.5px) !important;
+  background-size: 80px 80px !important;
+}
+
+.dark .grid-gradient {
+  background: radial-gradient(70% 70% at 50% 50%, transparent 0%, rgba(36, 101, 237, 0.05) 100%) !important;
+}
+
+/* Card styling improvements for dark mode */
+.dark .card {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.dark .card-description {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Frosted glass effect */
+.frost-glass {
+  @apply backdrop-blur-md border shadow-sm;
+  /* Light mode specific */
+  @apply bg-white/80 border-primary/10 text-gray-800 shadow-[0_4px_20px_rgba(36,101,237,0.2)];
+  /* Dark mode specific */
+  @apply dark:bg-black/20 dark:border-white/10 dark:text-white dark:shadow-[0_4px_20px_rgba(36,101,237,0.3)];
+}
+
+/* Input focus effect */
+.frost-glass-input:focus {
+  @apply border-primary/30 ring-2 ring-primary/20 ring-offset-0;
+}
+
+/* Custom styles for Cyberpunk/Glassmorphism */
+.glassmorphism-card {
+  background-color: rgba(255, 255, 255, 0.05); /* Very subtle white for dark mode */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  /* Removed static box-shadow, will be applied dynamically or via animation */
+}
+
+.dark .glassmorphism-card {
+  background-color: rgba(0, 0, 0, 0.2); /* Darker for dark mode */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  /* Removed static box-shadow, will be applied dynamically or via animation */
+}
+
+/* Grid background for hero section */
+.cyberpunk-background {
+  background-image: linear-gradient(to right, rgba(0, 240, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(circle at center, transparent 10%, black 70%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 10%, black 70%);
+}
+
+/* Neon button glow */
+.btn-neon-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-neon-glow::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #00f0ff 10% /* Neon Blue */,
+    #00ff80 20% /* Neon Green */,
+    #8a2be2 30% /* Neon Purple */,
+    #00f0ff 40%,
+    transparent 50%
+  );
+  animation: rotate 4s linear infinite;
+  opacity: 0.7;
+  filter: blur(15px);
+  z-index: -1;
+}
+
+.btn-neon-glow:hover::before {
+  opacity: 1;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Text glow for hero title */
+.text-neon-glow {
+  text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 15px #00f0ff;
+}
+
+/* Radar animation */
+.radar-sweep-line {
+  transform-origin: center;
+  animation: radar-sweep 4s linear infinite;
+}
+
+.dot-pulse {
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes radar-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dot-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Custom styles for lighter glassmorphism card in dark mode */
+.dark .lighter-glassmorphism-card {
+  background-color: rgba(40, 40, 40, 0.5) !important; /* Lighter black with more opacity */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Keep border similar */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6) !important; /* Slightly stronger shadow */
+}
